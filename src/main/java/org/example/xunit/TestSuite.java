@@ -1,5 +1,7 @@
 package org.example.xunit;
 
+import org.springframework.core.annotation.AnnotationUtils;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +12,7 @@ public class TestSuite implements Test {
 
     public TestSuite(Class<? extends TestCase> testClass) {
         Arrays.stream(testClass.getMethods())
-                .filter(method -> method.getName()
-                .startsWith("test"))
+                .filter(method -> AnnotationUtils.findAnnotation(method, org.example.xunit.annotation.Test.class) != null)
                 .forEach(method -> {
                     try {
                         add(testClass.getConstructor(String.class).newInstance(method.getName()));
