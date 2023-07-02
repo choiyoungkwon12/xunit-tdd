@@ -11,10 +11,9 @@ public class TestCase {
         this.name = name;
     }
 
-    public TestResult run() {
-        TestResult testResult = new TestResult();
-        setUp();
+    public void run(TestResult testResult) {
         testResult.testStarted();
+        setUp();
         try {
             Method method = getClass().getMethod(name);
             method.invoke(this);
@@ -23,7 +22,6 @@ public class TestCase {
         }
 
         tearDown();
-        return testResult;
     }
 
     public void setUp() {}
