@@ -11,6 +11,8 @@ public class TestCase {
     }
 
     public void run() {
+        setUp();
+
         try {
             Method method = getClass().getMethod(name);
             method.invoke(this);
@@ -18,4 +20,6 @@ public class TestCase {
             throw new RuntimeException(e);
         }
     }
+
+    public void setUp() {}
 }
