@@ -1,10 +1,8 @@
 package org.example.xunit;
 
-import javax.xml.transform.Result;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class TestCase {
+public class TestCase implements Test {
     protected final String name;
 
     public TestCase(String name) {
@@ -24,6 +22,9 @@ public class TestCase {
         tearDown();
     }
 
-    public void setUp() {}
-    public void tearDown() {}
+    public void setUp() {
+    }
+
+    public void tearDown() {
+    }
 }
