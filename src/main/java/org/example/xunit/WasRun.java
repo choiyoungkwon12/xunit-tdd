@@ -1,10 +1,14 @@
 package org.example.xunit;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class WasRun {
     public boolean wasRun;
+    private final String name;
 
-    public WasRun(String testMethod) {
-
+    public WasRun(String name) {
+        this.name = name;
     }
 
     public void testMethod() {
@@ -12,6 +16,11 @@ public class WasRun {
     }
 
     public void run() {
-
+        try {
+            Method method = getClass().getMethod(name);
+            method.invoke(this);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
